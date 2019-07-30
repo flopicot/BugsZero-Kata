@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Game {
-    ArrayList<Player> players = new ArrayList();
+    ArrayList<Player> players;
     Player currentPlayer;
 
     LinkedList popQuestions = new LinkedList();
@@ -17,14 +17,11 @@ public class Game {
 
     boolean isGettingOutOfPenaltyBox;
 
-    public Game(List<Player> players) {
-    	if (players == null || players.isEmpty() || players.size() < 2) {
-    		throw new IllegalArgumentException("RTFGM");
-		}
-
-    	players.stream().forEach(player -> this.add(player));
-
-    	this.currentPlayer = players.get(0);
+    public Game(Player player1, Player player2) {
+        players = new ArrayList();
+        this.add(player1);
+        this.add(player2);
+        this.currentPlayer = player1;
 
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast("Pop Question " + i);
@@ -32,6 +29,26 @@ public class Game {
             sportsQuestions.addLast(("Sports Question " + i));
             rockQuestions.addLast(createRockQuestion(i));
         }
+    }
+
+    public Game(Player player1, Player player2, Player player3) {
+        this(player1,player2);
+        this.add(player3);
+    }
+
+    public Game(Player player1, Player player2, Player player3, Player player4) {
+        this(player1,player2,player3);
+        this.add(player4);
+    }
+
+    public Game(Player player1, Player player2, Player player3, Player player4, Player player5) {
+        this(player1,player2,player3,player4);
+        this.add(player5);
+    }
+
+    public Game(Player player1, Player player2, Player player3, Player player4, Player player5, Player player6) {
+        this(player1,player2,player3,player4,player5);
+        this.add(player6);
     }
 
     public String createRockQuestion(int index) {
@@ -42,7 +59,7 @@ public class Game {
         return (howManyPlayers() >= 2);
     }
 
-    private boolean add(Player newPlayer) {
+    private final boolean add(Player newPlayer) {
 
         players.add(newPlayer);
 

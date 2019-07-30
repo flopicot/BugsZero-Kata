@@ -19,12 +19,7 @@ public class GameRunner {
 	}
 
 	public static void playGame(Random rand) {
-		List<Player> players = new ArrayList<>();
-		players.add(new Player("Chet"));
-		players.add(new Player("Pat"));
-		players.add(new Player("Sue"));
-
-		Game aGame = new Game(players);
+		Game aGame = new Game(new Player("Chet"),new Player("Pat"),new Player("Sue"));
 
 		do {
 
