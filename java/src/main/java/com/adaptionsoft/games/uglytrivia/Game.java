@@ -1,5 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import com.adaptionsoft.games.bean.Player;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -34,15 +36,15 @@ public class Game {
 		return (howManyPlayers() >= 2);
 	}
 
-	public boolean add(String playerName) {
+	public boolean add(Player newPlayer) {
 		
 		
-	    players.add(playerName);
+	    players.add(newPlayer.getName());
 	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
 	    inPenaltyBox[howManyPlayers()] = false;
 	    
-	    System.out.println(playerName + " was added");
+	    System.out.println(newPlayer.getName() + " was added");
 	    System.out.println("They are player number " + players.size());
 		return true;
 	}
