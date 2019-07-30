@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Game {
     ArrayList<Player> players = new ArrayList();
     int[] places = new int[6];
-    int[] purses  = new int[6];
+//    int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
     
     LinkedList popQuestions = new LinkedList();
@@ -41,7 +41,6 @@ public class Game {
 		
 	    players.add(newPlayer);
 	    places[howManyPlayers()] = 0;
-	    purses[howManyPlayers()] = 0;
 	    inPenaltyBox[howManyPlayers()] = false;
 	    
 	    System.out.println(newPlayer.getName() + " was added");
@@ -117,10 +116,10 @@ public class Game {
 				System.out.println("Answer was correct!!!!");
 				currentPlayerIndex++;
 				if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
-				purses[currentPlayerIndex]++;
+				players.get(currentPlayerIndex).addCoin();
 				System.out.println(players.get(currentPlayerIndex).getName()
 						+ " now has "
-						+ purses[currentPlayerIndex]
+						+ players.get(currentPlayerIndex).getPurse()
 						+ " Gold Coins.");
 
 				boolean winner = didPlayerWin();
@@ -137,10 +136,10 @@ public class Game {
 		} else {
 		
 			System.out.println("Answer was corrent!!!!");
-			purses[currentPlayerIndex]++;
+			players.get(currentPlayerIndex).addCoin();
 			System.out.println(players.get(currentPlayerIndex) .getName()
 					+ " now has "
-					+ purses[currentPlayerIndex]
+					+ players.get(currentPlayerIndex).getPurse()
 					+ " Gold Coins.");
 			
 			boolean winner = didPlayerWin();
@@ -163,6 +162,6 @@ public class Game {
 
 
 	private boolean didPlayerWin() {
-		return !(purses[currentPlayerIndex] == 6);
+		return !(players.get(currentPlayerIndex).getPurse() == 6);
 	}
 }
