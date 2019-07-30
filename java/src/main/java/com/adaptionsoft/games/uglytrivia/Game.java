@@ -1,6 +1,8 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import com.adaptionsoft.games.bean.Player;
+import com.adaptionsoft.games.bean.PopQuestion;
+import com.adaptionsoft.games.bean.ScienceQuestion;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -10,10 +12,10 @@ public class Game {
     ArrayList<Player> players;
     Player currentPlayer;
 
-    LinkedList popQuestions = new LinkedList();
-    LinkedList scienceQuestions = new LinkedList();
-    LinkedList sportsQuestions = new LinkedList();
-    LinkedList rockQuestions = new LinkedList();
+    LinkedList<PopQuestion> popQuestions = new LinkedList();
+    LinkedList<ScienceQuestion> scienceQuestions = new LinkedList();
+    LinkedList<SportsQuestion> sportsQuestions = new LinkedList();
+    LinkedList<RockQuestion> rockQuestions = new LinkedList();
 
     boolean isGettingOutOfPenaltyBox;
 
@@ -24,10 +26,10 @@ public class Game {
         this.currentPlayer = player1;
 
         for (int i = 0; i < 50; i++) {
-            popQuestions.addLast("Pop Question " + i);
-            scienceQuestions.addLast(("Science Question " + i));
-            sportsQuestions.addLast(("Sports Question " + i));
-            rockQuestions.addLast(createRockQuestion(i));
+            popQuestions.addLast(new PopQuestion("Pop Question " + i));
+            scienceQuestions.addLast(new ScienceQuestion("Science Question " + i));
+            sportsQuestions.addLast(new SportsQuestion("Sports Question " + i));
+            rockQuestions.addLast(new RockQuestion("Rock Question " + i));
         }
     }
 
@@ -51,9 +53,6 @@ public class Game {
         this.add(player6);
     }
 
-    public String createRockQuestion(int index) {
-        return "Rock Question " + index;
-    }
 
     public boolean isPlayable() {
         return (howManyPlayers() >= 2);
@@ -106,13 +105,13 @@ public class Game {
 
     private void askQuestion() {
         if (currentCategory() == "Pop")
-            System.out.println(popQuestions.removeFirst());
+            System.out.println(popQuestions.removeFirst().getTitle());
         if (currentCategory() == "Science")
-            System.out.println(scienceQuestions.removeFirst());
+            System.out.println(scienceQuestions.removeFirst().getTitle());
         if (currentCategory() == "Sports")
-            System.out.println(sportsQuestions.removeFirst());
+            System.out.println(sportsQuestions.removeFirst().getTitle());
         if (currentCategory() == "Rock")
-            System.out.println(rockQuestions.removeFirst());
+            System.out.println(rockQuestions.removeFirst().getTitle());
     }
 
 
