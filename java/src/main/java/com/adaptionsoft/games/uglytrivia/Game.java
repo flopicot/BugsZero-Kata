@@ -7,8 +7,6 @@ import java.util.LinkedList;
 
 public class Game {
     ArrayList<Player> players = new ArrayList();
-    int[] places = new int[6];
-//    int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
     
     LinkedList popQuestions = new LinkedList();
@@ -40,7 +38,6 @@ public class Game {
 		
 		
 	    players.add(newPlayer);
-	    places[howManyPlayers()] = 0;
 	    inPenaltyBox[howManyPlayers()] = false;
 	    
 	    System.out.println(newPlayer.getName() + " was added");
@@ -75,12 +72,11 @@ public class Game {
 	}
 
 	private void movePlayerAndAskQuestion(int roll) {
-		places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
-		if (places[currentPlayerIndex] > 11) places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
+    	players.get(currentPlayerIndex).moveForward(roll);
 
 		System.out.println(players.get(currentPlayerIndex).getName()
                 + "'s new location is "
-                + places[currentPlayerIndex]);
+                + players.get(currentPlayerIndex).getPlace());
 		System.out.println("The category is " + currentCategory());
 		askQuestion();
 	}
@@ -98,15 +94,16 @@ public class Game {
 	
 	
 	private String currentCategory() {
-		if (places[currentPlayerIndex] == 0) return "Pop";
-		if (places[currentPlayerIndex] == 4) return "Pop";
-		if (places[currentPlayerIndex] == 8) return "Pop";
-		if (places[currentPlayerIndex] == 1) return "Science";
-		if (places[currentPlayerIndex] == 5) return "Science";
-		if (places[currentPlayerIndex] == 9) return "Science";
-		if (places[currentPlayerIndex] == 2) return "Sports";
-		if (places[currentPlayerIndex] == 6) return "Sports";
-		if (places[currentPlayerIndex] == 10) return "Sports";
+    	Player player = players.get(currentPlayerIndex);
+		if (player.getPlace() == 0) return "Pop";
+		if (player.getPlace() == 4) return "Pop";
+		if (player.getPlace() == 8) return "Pop";
+		if (player.getPlace() == 1) return "Science";
+		if (player.getPlace() == 5) return "Science";
+		if (player.getPlace() == 9) return "Science";
+		if (player.getPlace() == 2) return "Sports";
+		if (player.getPlace() == 6) return "Sports";
+		if (player.getPlace() == 10) return "Sports";
 		return "Rock";
 	}
 
@@ -116,7 +113,7 @@ public class Game {
 				System.out.println("Answer was correct!!!!");
 				currentPlayerIndex++;
 				if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
-				players.get(currentPlayerIndex).addCoin();
+				players.get(currentPlayerIndex).addCoinInPurse();
 				System.out.println(players.get(currentPlayerIndex).getName()
 						+ " now has "
 						+ players.get(currentPlayerIndex).getPurse()
@@ -136,7 +133,7 @@ public class Game {
 		} else {
 		
 			System.out.println("Answer was corrent!!!!");
-			players.get(currentPlayerIndex).addCoin();
+			players.get(currentPlayerIndex).addCoinInPurse();
 			System.out.println(players.get(currentPlayerIndex) .getName()
 					+ " now has "
 					+ players.get(currentPlayerIndex).getPurse()

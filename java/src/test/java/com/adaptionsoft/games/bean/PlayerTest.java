@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class PlayerTest {
 
     private Player player;
@@ -26,8 +24,26 @@ public class PlayerTest {
     }
 
     @Test
+    public void getPlace(){
+        Assert.assertEquals(0, player.getPlace());
+    }
+
+    @Test
     public void addCoin() {
-        player.addCoin();
+        player.addCoinInPurse();
         Assert.assertEquals(1, player.getPurse());
     }
+
+    @Test
+    public void moveNoLap(){
+        player.moveForward(3);
+        Assert.assertEquals(3, player.getPlace());
+    }
+
+    @Test
+    public void moveWithLap(){
+        player.moveForward(15);
+        Assert.assertEquals(3, player.getPlace());
+    }
+
 }

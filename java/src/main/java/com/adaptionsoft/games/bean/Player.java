@@ -5,6 +5,7 @@ import com.spun.util.StringUtils;
 public class Player {
     private String name;
     private int purse = 0;
+    private int place = 0;
 
     public Player(String name) {
         if (name == null || "".equals(name)) {
@@ -21,7 +22,18 @@ public class Player {
         return this.purse;
     }
 
-    public void addCoin() {
+    public int getPlace() {
+        return this.place;
+    }
+
+    public void addCoinInPurse() {
         this.purse++;
+    }
+
+    public void moveForward(int roll) {
+        this.place += roll;
+        if (this.place > 11) {
+            this.place = place - 12;
+        }
     }
 }
