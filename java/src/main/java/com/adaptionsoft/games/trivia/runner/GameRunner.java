@@ -1,5 +1,7 @@
 
 package com.adaptionsoft.games.trivia.runner;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.adaptionsoft.games.bean.Player;
@@ -17,12 +19,12 @@ public class GameRunner {
 	}
 
 	public static void playGame(Random rand) {
-		Game aGame = new Game();
+		List<Player> players = new ArrayList<>();
+		players.add(new Player("Chet"));
+		players.add(new Player("Pat"));
+		players.add(new Player("Sue"));
 
-		aGame.add(new Player("Chet"));
-		aGame.add(new Player("Pat"));
-		aGame.add(new Player("Sue"));
-
+		Game aGame = new Game(players);
 
 		do {
 
