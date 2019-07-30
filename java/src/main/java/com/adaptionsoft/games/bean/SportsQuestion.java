@@ -1,4 +1,4 @@
-package com.adaptionsoft.games.uglytrivia;
+package com.adaptionsoft.games.bean;
 
 import com.adaptionsoft.games.bean.Question;
 

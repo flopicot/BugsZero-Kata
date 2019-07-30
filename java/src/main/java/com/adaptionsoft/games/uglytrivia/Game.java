@@ -1,12 +1,9 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import com.adaptionsoft.games.bean.Player;
-import com.adaptionsoft.games.bean.PopQuestion;
-import com.adaptionsoft.games.bean.ScienceQuestion;
+import com.adaptionsoft.games.bean.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Game {
     ArrayList<Player> players;
